@@ -18,7 +18,7 @@ def unzip(source, target):
 # tree = html.fromstring(page.text)
 
 
-for i in range(100,200):
+for i in range(1,10):
 	# buyers = tree.xpath('//*[@id="container"]/blockquote/p[26]/a['+str(i)+']/text()');
 	# print buyers;
 
@@ -26,8 +26,8 @@ for i in range(100,200):
 	# html = response.read()
 	print i;
 	try:
-		urllib.urlretrieve('http://www.hansard-archive.parliament.uk/Parliamentary_Debates_(4th_Series)_Vol_1_(February_1892)_to_Vol_199_(December_1908)/S4CV0'+str(i)+'P0.zip','./'+str(i)+'.zip');
-		unzip('./'+str(i)+'.zip','./');
+		urllib.urlretrieve('http://www.hansard-archive.parliament.uk/The_Official_Report,_House_of_Commons_(6th_Series)_Vol_1_(March_1981)_to_2004/S6CV000'+str(i)+'P0.zip','./S6/'+str(i)+'.zip');
+		unzip('./S6/'+str(i)+'.zip','./S6/');
 
 	except (IOError,zipfile.BadZipfile):
 		print "Oops!  That was no valid number.  Try again..."
@@ -41,6 +41,7 @@ for i in range(100,200):
 
 
 
+# Details of dataset
 
 # ////////////////S6////////////////
 
@@ -63,6 +64,7 @@ for i in range(100,200):
 
 # P0 - (1,200)
 
+# www.hansard-archive.parliament.uk/Parliamentary_Debates_(4th_Series)_Vol_1_(February_1892)_to_Vol_199_(December_1908)/S4V0004P0.zip
 
 # /////////////////////////////////
 
