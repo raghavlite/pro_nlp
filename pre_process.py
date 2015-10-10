@@ -17,20 +17,24 @@ jj = BeautifulSoup(jj);
 jj = jj.get_text();
 
 year = re.search('(\d{4})',jj);
-
-year = year.groups()[0];
-
-
-
+if(year!=None):
+	year = int(year.groups()[0]);
+else:
+	print 'mango dolly';
 
 
 
 
 
 kk = ' '.join([str(s.extract()) for s in soup('housecommons')]);
+ll = ' '.join([str(s.extract()) for s in soup('houselords')]);
+mm = ' '.join([str(s.extract()) for s in soup('writtenanswers')]);
 
 
-kk = BeautifulSoup(kk);
+
+
+
+kk = BeautifulSoup(kk+'\n'+ll+'\n'+mm);
 
 pp = ' '.join([str(s.extract()) for s in kk('p')]);
 
