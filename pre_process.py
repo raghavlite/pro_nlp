@@ -10,6 +10,8 @@ import os
 f_list = os.listdir("./")
 
 
+# f_list = ['S6CV0102P0.xml','S6CV0155P0.xml']
+
 
 for km in f_list: 
 
@@ -65,9 +67,14 @@ for km in f_list:
 
 	# pp = pp.rstrip();
 
-	f = open('./'+str((year/10)*10)+'.txt','a');
-	f.write(pp);
-	f.close();
+	try:
+		f = open('../final/'+str((year/10)*10)+'.txt','a');
+		f.write(pp);
+		f.close();
+	except (UnicodeEncodeError ):
+		print 'bad file'
+
+
 'end for'
 
 # txt_again = open('./'+str((year/10)*10)+'.txt','r');
