@@ -1,6 +1,7 @@
 from bs4 import *
 import re
 import os
+import xml.etree.ElementTree as ET
 
 
 
@@ -15,13 +16,42 @@ f_list = os.listdir("./")
 
 for km in f_list: 
 
-	print km;
-	txt_again = open('./'+km,'r');
-	txt_again = txt_again.read();
+	# print km;
+	# txt_again = open('./'+km,'r');
+	# txt_again = txt_again.read();
+
+
+	root = ET.parse('./'+km)
+
+
+	foos = root.findall('housecommons')
+	for foo in foos:
+		bars = foo.findall('p')
+		for bar in bars:
+			foo.remove(bar)
+
+	foos = root.findall('houselords')
+	for foo in foos:
+		bars = foo.findall('p')
+		for bar in bars:
+			foo.remove(bar)
+
+	foos = root.findall('writtenanswers')
+	for foo in foos:
+		bars = foo.findall('p')
+		for bar in bars:
+			foo.remove(bar)
+
+
+
+	txt_again = ET.tostring(root.getroot(), encoding='utf8', method='xml');
+
+
 	txt_again = re.sub('<col>\d+</col>','',txt_again);
 	txt_again = re.sub('&#......',' ',txt_again)
 	# &#x2014;
 	# &#x00E2;
+
 
 
 	soup = BeautifulSoup(txt_again);
@@ -46,6 +76,7 @@ for km in f_list:
 	mm = ' '.join([str(s.extract()) for s in soup('writtenanswers')]);
 
 
+	//*[@id="collapsible1147"]
 
 
 
