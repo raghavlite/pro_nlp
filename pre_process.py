@@ -147,7 +147,7 @@ for km in f_list:
 	# pp = pp.rstrip();
 
 	try:
-		f = open('../final/'+str((year/10)*10)+'.txt','a');
+		f = open('../final1.2/'+str((year/10)*10)+'.txt','a');
 		f.write(pp);
 		f.close();
 	except (UnicodeEncodeError ):
