@@ -21,7 +21,12 @@ for km in f_list:
 	# txt_again = txt_again.read();
 
 
-	root = ET.parse('./'+km)
+	root = ET.parse('./'+km);
+
+
+	foos = root.iter('table')
+	for foo in foos:
+		foo.clear()
 
 
 	foos = root.findall('housecommons')
@@ -36,21 +41,64 @@ for km in f_list:
 		for bar in bars:
 			foo.remove(bar)
 
+	mm= '';
 	foos = root.findall('writtenanswers')
 	for foo in foos:
 		bars = foo.findall('p')
 		for bar in bars:
 			foo.remove(bar)
-
+		mm+=ET.tostring(foo, encoding='utf8', method='xml');
+		root.getroot().remove(foo);
 
 
 	txt_again = ET.tostring(root.getroot(), encoding='utf8', method='xml');
 
 
+
+
+	# try:
+	# 	f = open('./qq.xml','a');
+	# 	f.write(txt_again);
+	# 	f.close();
+	# except (UnicodeEncodeError ):
+	# 	print 'bad file'
+
+
+	
+	# txt_again = re.sub('<table>[]+<\/table>','',txt_again);
 	txt_again = re.sub('<col>\d+</col>','',txt_again);
 	txt_again = re.sub('&#......',' ',txt_again)
+
+
+
+
 	# &#x2014;
 	# &#x00E2;
+
+	# try:
+	# 	f = open('./qq.xml','a');
+	# 	f.write(txt_again);
+	# 	f.close();
+	# except (UnicodeEncodeError ):
+	# 	print 'bad file'
+
+
+
+	# soup = BeautifulSoup(txt_again);
+
+	# soup.table.clear()
+	# txt_again1 = soup.get_text(); 
+
+
+	# try:
+	# 	f = open('./pp.xml','a');
+	# 	f.write(txt_again);
+	# 	f.close();
+	# except (UnicodeEncodeError ):
+	# 	print 'bad file'
+
+
+
 
 
 
@@ -73,10 +121,10 @@ for km in f_list:
 
 	kk = ' '.join([str(s.extract()) for s in soup('housecommons')]);
 	ll = ' '.join([str(s.extract()) for s in soup('houselords')]);
-	mm = ' '.join([str(s.extract()) for s in soup('writtenanswers')]);
+	# mm = ' '.join([str(s.extract()) for s in soup('writtenanswers')]);
 
 
-	//*[@id="collapsible1147"]
+	# //*[@id="collapsible1147"]
 
 
 
