@@ -110,15 +110,15 @@ for km in sorted(f_list):
 
 	pp = BeautifulSoup(pp);
 	pp = pp.get_text();
-	pp = re.sub('\r',' ',pp)
-	pp = re.sub('\n\n',' ',pp)
-	pp = re.sub('\n',' ',pp)
+	pp = re.sub('(\r|\n\n|\n|\[[^\]\[]+\])',' ',pp)
+	# pp = re.sub('',' ',pp)
+	# pp = re.sub('',' ',pp)
 
 
 
 	# txt_again = re.sub('\u....',' ',pp);
-	pp = re.sub(u'\u2014',' ',pp);
-	pp = re.sub(u'\u2013',' ',pp);
+	pp = re.sub(u'\u2014|\u2013',' ',pp);
+	# pp = re.sub(u'\u2013',' ',pp);
 
 
 	# pp = re.sub(u'\xb0',' ',pp);
@@ -143,7 +143,7 @@ for km in sorted(f_list):
 
 	# print pp
 
-	pp = re.sub('\[[^\]\[]+\]',' ',pp);
+	# pp = re.sub('\[[^\]\[]+\]',' ',pp);
 
 
 
