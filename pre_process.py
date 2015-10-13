@@ -9,14 +9,14 @@ import xml.etree.ElementTree as ET
 
 
 f_list = os.listdir("./")
-
+# f_list = ['S4V0010P0.xml'];
 
 # f_list = ['S6CV0102P0.xml','S6CV0155P0.xml']
 
 
-for km in f_list: 
+for km in sorted(f_list): 
 
-	# print km;
+	print km;
 	# txt_again = open('./'+km,'r');
 	# txt_again = txt_again.read();
 
@@ -24,9 +24,9 @@ for km in f_list:
 	root = ET.parse('./'+km);
 
 
-	foos = root.iter('table')
-	for foo in foos:
-		foo.clear()
+	# foos = root.iter('table')
+	# for foo in foos:
+	# 	foo.clear()
 
 
 	foos = root.findall('housecommons')
@@ -47,57 +47,25 @@ for km in f_list:
 		bars = foo.findall('p')
 		for bar in bars:
 			foo.remove(bar)
-		mm+=ET.tostring(foo, encoding='utf8', method='xml');
+		mm+=ET.tostring(foo, encoding='ascii', method='xml');
 		root.getroot().remove(foo);
 
 
-	txt_again = ET.tostring(root.getroot(), encoding='utf8', method='xml');
+	txt_again = ET.tostring(root.getroot(), encoding='ascii', method='xml');
 
 
 
-
-	# try:
-	# 	f = open('./qq.xml','a');
-	# 	f.write(txt_again);
-	# 	f.close();
-	# except (UnicodeEncodeError ):
-	# 	print 'bad file'
-
-
-	
 	# txt_again = re.sub('<table>[]+<\/table>','',txt_again);
 	txt_again = re.sub('<col>\d+</col>','',txt_again);
 	txt_again = re.sub('&#......',' ',txt_again)
 
 
-
-
-	# &#x2014;
-	# &#x00E2;
-
 	# try:
 	# 	f = open('./qq.xml','a');
 	# 	f.write(txt_again);
 	# 	f.close();
 	# except (UnicodeEncodeError ):
 	# 	print 'bad file'
-
-
-
-	# soup = BeautifulSoup(txt_again);
-
-	# soup.table.clear()
-	# txt_again1 = soup.get_text(); 
-
-
-	# try:
-	# 	f = open('./pp.xml','a');
-	# 	f.write(txt_again);
-	# 	f.close();
-	# except (UnicodeEncodeError ):
-	# 	print 'bad file'
-
-
 
 
 
@@ -116,6 +84,7 @@ for km in f_list:
 		print 'mango dolly';
 
 
+	# print soup.get_text();
 
 
 
@@ -135,26 +104,36 @@ for km in f_list:
 
 	pp = BeautifulSoup(pp);
 	pp = pp.get_text();
-	pp = re.sub('\r','',pp)
-	pp = re.sub('\n','',pp)
-	pp = re.sub('\n\n','',pp)
+	pp = re.sub('\r',' ',pp)
+	pp = re.sub('\n\n',' ',pp)
+	pp = re.sub('\n',' ',pp)
 
 
 
+	# txt_again = re.sub('\u....',' ',pp);
+	pp = re.sub(u'\u2014',' ',pp);
+	pp = re.sub(u'\u2013',' ',pp);
 
+	# pp = re.sub('&#......',' ',pp)
 
+	# print txt_again;
 
 	# pp = pp.rstrip();
 
-	try:
-		f = open('../final1.2/'+str((year/10)*10)+'.txt','a');
-		f.write(pp);
-		f.close();
-	except (UnicodeEncodeError ):
-		print 'bad file'
+	# print pp
+
+	# pp = pp.decode('ascii')
+	# try:
+	f = open('../final1.2/'+str((year/10)*10)+'.txt','a');
+	f.write(pp);
+	f.close();
+	# except (UnicodeEncodeError ):
+	# 	print 'bad file'
 
 
 'end for'
+
+
 
 # txt_again = open('./'+str((year/10)*10)+'.txt','r');
 # txt_again = txt_again.read();
