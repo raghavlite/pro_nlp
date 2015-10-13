@@ -16,11 +16,11 @@ f_list = os.listdir("./")
 flag=0;
 for km in sorted(f_list): 
 
-	if(km == 'S4V0039P0.xml'):
-		flag=1;
+	# if(km == 'S4V0039P0.xml'):
+	# 	flag=1;
 
-	if(flag == 0):
-		continue;
+	# if(flag == 0):
+	# 	continue;
 
 	print km;
 	# txt_again = open('./'+km,'r');
@@ -147,20 +147,22 @@ for km in sorted(f_list):
 
 
 	f = open('../pp.txt','a');
-
 	f.write(''.join([i if ord(i) < 128 else ' ' for i in pp]));
 
 
-	# pp = pp.decode('ascii')
-	# try:
-	# f = open('../final1.2/'+str((year/10)*10)+'.txt','a');
-	# f.write(pp);
-	# f.close();
-	# except (UnicodeEncodeError ):
-	# 	print 'bad file'
+	try:
+		f = open('../final1.2/'+str((year/10)*10)+'.txt','a');
+		f.write(''.join([i if ord(i) < 128 else ' ' for i in pp]));
+		f.close();
+	except (UnicodeEncodeError ):
+		print 'bad file'
 
 
 'end for'
+
+# pp = pp.decode('ascii')
+
+
 
 # txt_again = open('./'+str((year/10)*10)+'.txt','r');
 # txt_again = txt_again.read();
