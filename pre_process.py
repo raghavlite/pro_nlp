@@ -146,13 +146,15 @@ for km in sorted(f_list):
 	pp = re.sub('\[[^\]\[]+\]',' ',pp);
 
 
-	f = open('../pp.txt','a');
-	f.write(''.join([i if ord(i) < 128 else ' ' for i in pp]));
 
 
 	try:
 		f = open('../final1.2/'+str((year/10)*10)+'.txt','a');
-		f.write(''.join([i if ord(i) < 128 else ' ' for i in pp]));
+		for i in pp:
+			if ord(i) < 128:
+				f.write(i) 
+			else :
+				f.write(' ');
 		f.close();
 	except (UnicodeEncodeError ):
 		print 'bad file'
