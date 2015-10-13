@@ -13,8 +13,14 @@ f_list = os.listdir("./")
 
 # f_list = ['S6CV0102P0.xml','S6CV0155P0.xml']
 
-
+flag=0;
 for km in sorted(f_list): 
+
+	if(km == 'S4V0039P0.xml'):
+		flag=1;
+
+	if(flag == 0):
+		continue;
 
 	print km;
 	# txt_again = open('./'+km,'r');
@@ -114,6 +120,21 @@ for km in sorted(f_list):
 	pp = re.sub(u'\u2014',' ',pp);
 	pp = re.sub(u'\u2013',' ',pp);
 
+
+	# pp = re.sub(u'\xb0',' ',pp);
+	# pp = re.sub(u'\xb7',' ',pp);
+	# pp = re.sub(u'\xbc',' ',pp);
+	# pp = re.sub(u'\xa3',' ',pp);
+	# pp = re.sub(u'\x8\w',' ',pp);
+	# pp = re.sub(u'\x9\w',' ',pp);
+	# pp = re.sub(u'\xa\w',' ',pp);
+	# pp = re.sub(u'\xb\w',' ',pp);
+	# pp = re.sub(u'\xc\w',' ',pp);
+
+	# pp = re.sub(u'\xd\w',' ',pp);
+	# pp = re.sub(u'\xe\w',' ',pp);
+
+	# print pp;
 	# pp = re.sub('&#......',' ',pp)
 
 	# print txt_again;
@@ -122,18 +143,24 @@ for km in sorted(f_list):
 
 	# print pp
 
+	pp = re.sub('\[[^\]\[]+\]',' ',pp);
+
+
+	f = open('../pp.txt','a');
+
+	f.write(''.join([i if ord(i) < 128 else ' ' for i in pp]));
+
+
 	# pp = pp.decode('ascii')
 	# try:
-	f = open('../final1.2/'+str((year/10)*10)+'.txt','a');
-	f.write(pp);
-	f.close();
+	# f = open('../final1.2/'+str((year/10)*10)+'.txt','a');
+	# f.write(pp);
+	# f.close();
 	# except (UnicodeEncodeError ):
 	# 	print 'bad file'
 
 
 'end for'
-
-
 
 # txt_again = open('./'+str((year/10)*10)+'.txt','r');
 # txt_again = txt_again.read();
@@ -143,6 +170,3 @@ for km in sorted(f_list):
 # f = open('./'+str((year/10)*10)+'.txt','w');
 # f.write(pp);
 # f.close();
-
-
-
