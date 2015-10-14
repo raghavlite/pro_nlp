@@ -117,7 +117,7 @@ for km in sorted(f_list):
 
 
 	# txt_again = re.sub('\u....',' ',pp);
-	pp = re.sub(u'\u2014|\u2013',' ',pp);
+	pp = re.sub(u'(\u2014|\u2013)',' ',pp);
 	# pp = re.sub(u'\u2013',' ',pp);
 
 
@@ -149,15 +149,20 @@ for km in sorted(f_list):
 
 
 	try:
-		f = open('../final1.2/'+str((year/10)*10)+'.txt','a');
+		f = open('../final1.33/'+str((year/10)*10)+'.txt','a');
 		for i in pp:
 			if ord(i) < 128:
 				f.write(i) 
 			else :
 				f.write(' ');
 		f.close();
+		f = open('../final1.33/done.txt','a');
+		f.write(''+km+'\n');
+		f.close();
 	except (UnicodeEncodeError ):
 		print 'bad file'
+
+
 
 
 'end for'
