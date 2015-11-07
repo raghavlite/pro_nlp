@@ -91,7 +91,7 @@ for a in pp:
 				date = ll.groups()[0];
 			else:
 				date = 15;
-				print 'year not available';
+				# print 'year not available';
 				# continue;
 		except:
 			print 'yy2'
@@ -107,15 +107,15 @@ for a in pp:
 
 
 
-	if not os.path.exists('../'+tpe):
-		os.makedirs('../'+tpe)
+	if not os.path.exists('../final1.1/'+tpe):
+		os.makedirs('../final1.1/'+tpe)
 
 
 	# try:
-	# 	print date;
-		f = open('../'+tpe+'/'+str((int(date)/10)*10)+'.txt','a');
-		f.write('\n'+content.encode('utf8'));
-		f.close(); 
+	print 'bla bla car',date,tpe;
+	f = open('../final1.1/'+tpe+'/'+str((int(date)/10)*10)+'.txt','a');
+	f.write('\n'+content.encode('utf8'));
+	f.close(); 
 	# except:
 	# 	print 'writing error';
 

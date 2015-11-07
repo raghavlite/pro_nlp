@@ -22,8 +22,6 @@ for f in sorted(f_list):
 	line=re.sub("[0-9]+","",line)
 	match=re.search("([A-Z])\.",line);
 	line=re.sub("([A-Z])\.",match.groups()[0] ,line);
-
-	line = line.sub('(?|!|:)','.',line)
 	sentence=line.strip().split('.')
 	# string = "Special $#! characters   spaces 888323"
 
@@ -44,7 +42,7 @@ for f in sorted(f_list):
 	print sumt
 	print len(sentences)
 	# cPickle.dump(sentences, 'sentences'+i)
-	model = models.Word2Vec(sentences,size=200,window=5, min_count=5, workers=8 )
+	model = models.Word2Vec(sentences,size=200,window=5, min_count=2, workers=8 )
 	model.save('word'+str(i))
 	i=i+1	
 
